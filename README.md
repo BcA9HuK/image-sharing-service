@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Image Sharing Service
 
-## Getting Started
+Мини-аналог Imgur - сервис для загрузки и обмена изображениями с авторизацией и приватностью.
 
-First, run the development server:
+## Возможности
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 Регистрация и авторизация пользователей
+- 📸 Загрузка изображений (JPEG, PNG, GIF, WebP) до 10МБ
+- 🔒 Публичные и приватные изображения
+- 👁️ Счетчик просмотров
+- 👤 Профили пользователей с статистикой
+- 🖼️ Галерея публичных изображений
+- 🗑️ Удаление своих изображений
+- 🔗 Копирование ссылок на изображения
+- 📊 Сортировка (по дате, популярности, названию)
+- 📄 Пагинация (загрузка по 20 изображений)
+- 🌙 Темная тема
+
+## Технологии
+
+- **Frontend/Backend**: Next.js 15.1.6 (App Router)
+- **Аутентификация**: NextAuth.js v5
+- **База данных**: Sanity.io
+- **Язык**: TypeScript
+- **Стили**: Tailwind CSS v4
+- **Тестирование**: Vitest + fast-check (Property-Based Testing)
+
+## Быстрый старт
+
+### Локальная разработка
+
+1. Клонируйте репозиторий
+2. Установите зависимости: `npm install`
+3. Настройте Sanity проект (см. [SETUP.md](./SETUP.md))
+4. Скопируйте `.env.example` в `.env.local` и заполните переменные
+5. Запустите: `npm run dev`
+6. Откройте http://localhost:3000
+
+Подробная инструкция по настройке в [SETUP.md](./SETUP.md)
+
+### Деплой на Vercel
+
+Быстрая инструкция: [VERCEL-QUICK-START.md](./VERCEL-QUICK-START.md)
+
+Полная инструкция: [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+## Структура проекта
+
+```
+├── app/              # Next.js App Router
+│   ├── actions/      # Server Actions
+│   ├── api/          # API Routes
+│   ├── auth/         # Страницы аутентификации
+│   ├── image/        # Страница просмотра изображения
+│   ├── login/        # Страница входа
+│   ├── profile/      # Страница профиля
+│   ├── signup/       # Страница регистрации
+│   └── upload/       # Страница загрузки
+├── components/       # React компоненты
+│   ├── ImageCard.tsx
+│   ├── ImageGallery.tsx
+│   ├── Navigation.tsx
+│   └── ...
+├── lib/             # Утилиты и конфигурация
+│   ├── sanity/      # Sanity клиент и схемы
+│   ├── validation.ts
+│   ├── authorization.ts
+│   └── errors.ts
+├── auth.config.ts   # NextAuth конфигурация
+├── auth.ts          # NextAuth setup
+└── middleware.ts    # Защита роутов
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Скрипты
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - запуск dev сервера
+- `npm run build` - сборка для продакшена
+- `npm start` - запуск продакшен сервера
+- `npm test` - запуск тестов
+- `npm run lint` - проверка кода
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Переменные окружения
 
-## Learn More
+```env
+# NextAuth
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key
 
-To learn more about Next.js, take a look at the following resources:
+# Sanity
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your-api-token
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Лицензия
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

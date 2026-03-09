@@ -54,20 +54,20 @@ export function ImageGallery({ initialImages, initialSortBy }: ImageGalleryProps
   return (
     <div>
       {/* Sort Controls */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-400">Сортировка:</span>
+          <span className="text-xs sm:text-sm text-gray-400">Сортировка:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="px-3 py-2 border border-gray-700 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100 bg-gray-800"
+            className="px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-700 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100 bg-gray-800"
           >
             <option value="recent">Недавние</option>
             <option value="popular">Популярные</option>
             <option value="title">По названию</option>
           </select>
         </div>
-        <div className="text-sm text-gray-400">
+        <div className="text-xs sm:text-sm text-gray-400">
           Показано: {images.length} изображений
         </div>
       </div>
@@ -75,11 +75,11 @@ export function ImageGallery({ initialImages, initialSortBy }: ImageGalleryProps
       {/* Image Grid */}
       {images.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-400">Пока нет изображений. Будьте первым, кто загрузит!</p>
+          <p className="text-gray-400 text-sm sm:text-base px-4">Пока нет изображений. Будьте первым, кто загрузит!</p>
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {images.map((image) => (
               <ImageCard key={image._id} image={image} />
             ))}
@@ -87,11 +87,11 @@ export function ImageGallery({ initialImages, initialSortBy }: ImageGalleryProps
 
           {/* Load More Button */}
           {hasMore && (
-            <div className="mt-8 text-center">
+            <div className="mt-6 sm:mt-8 text-center">
               <button
                 onClick={handleLoadMore}
                 disabled={loading}
-                className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white text-sm sm:text-base rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Загрузка...' : 'Загрузить еще'}
               </button>

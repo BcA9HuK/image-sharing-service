@@ -24,72 +24,72 @@ export default async function ProfilePage() {
   const privateImages = images.filter(img => !img.isPublic).length;
 
   return (
-    <div className="min-h-screen bg-gray-950 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-950 py-4 sm:py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Profile Header */}
-        <div className="bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <div className="flex items-center space-x-6">
+        <div className="bg-gray-800 rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
             <img
               src={user.avatar}
               alt={user.username}
-              className="w-24 h-24 rounded-full"
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full"
             />
-            <div className="flex-1">
-              <h1 className="text-3xl font-bold text-white">{user.username}</h1>
-              <p className="text-gray-400">{user.email}</p>
-              <p className="text-sm text-gray-500 mt-1">
+            <div className="flex-1 text-center sm:text-left">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white">{user.username}</h1>
+              <p className="text-sm sm:text-base text-gray-400 break-all">{user.email}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">
                 Участник с {new Date(user.createdAt).toLocaleDateString('ru-RU')}
               </p>
             </div>
             <Link
               href="/upload"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              className="px-3 sm:px-4 py-2 bg-blue-600 text-white text-sm sm:text-base rounded-md hover:bg-blue-700 whitespace-nowrap"
             >
               Загрузить изображение
             </Link>
           </div>
 
           {/* Statistics */}
-          <div className="mt-6 pt-6 border-t border-gray-700 grid grid-cols-4 gap-4">
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-700 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">{images.length}</div>
-              <div className="text-sm text-gray-400">Всего изображений</div>
+              <div className="text-xl sm:text-2xl font-bold text-white">{images.length}</div>
+              <div className="text-xs sm:text-sm text-gray-400">Всего изображений</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-500">{publicImages}</div>
-              <div className="text-sm text-gray-400">Публичных</div>
+              <div className="text-xl sm:text-2xl font-bold text-green-500">{publicImages}</div>
+              <div className="text-xs sm:text-sm text-gray-400">Публичных</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-400">{privateImages}</div>
-              <div className="text-sm text-gray-400">Приватных</div>
+              <div className="text-xl sm:text-2xl font-bold text-gray-400">{privateImages}</div>
+              <div className="text-xs sm:text-sm text-gray-400">Приватных</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-500">{totalViews}</div>
-              <div className="text-sm text-gray-400">Всего просмотров</div>
+              <div className="text-xl sm:text-2xl font-bold text-blue-500">{totalViews}</div>
+              <div className="text-xs sm:text-sm text-gray-400">Всего просмотров</div>
             </div>
           </div>
         </div>
 
         {/* Images Section */}
         <div>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
               Мои изображения ({images.length})
             </h2>
           </div>
 
           {images.length === 0 ? (
-            <div className="bg-gray-800 rounded-lg shadow-md p-12 text-center">
-              <p className="text-gray-400 mb-4">Вы еще не загрузили ни одного изображения.</p>
+            <div className="bg-gray-800 rounded-lg shadow-md p-8 sm:p-12 text-center">
+              <p className="text-sm sm:text-base text-gray-400 mb-4">Вы еще не загрузили ни одного изображения.</p>
               <Link
                 href="/upload"
-                className="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white text-sm sm:text-base rounded-md hover:bg-blue-700"
               >
                 Загрузить первое изображение
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
               {images.map((image) => (
                 <div key={image._id} className="relative">
                   <ImageCard image={image} />

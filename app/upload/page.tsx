@@ -117,14 +117,14 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 py-8">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gray-800 rounded-lg shadow-md p-6">
-          <h1 className="text-2xl font-bold text-white mb-6">Загрузить изображение</h1>
+    <div className="min-h-screen bg-gray-950 py-4 sm:py-8">
+      <div className="max-w-2xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div className="bg-gray-800 rounded-lg shadow-md p-4 sm:p-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Загрузить изображение</h1>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {errors.length > 0 && (
-              <div className="bg-red-900 bg-opacity-50 border border-red-700 text-red-200 px-4 py-3 rounded">
+              <div className="bg-red-900 bg-opacity-50 border border-red-700 text-red-200 px-3 sm:px-4 py-2 sm:py-3 rounded text-sm">
                 <ul className="list-disc list-inside space-y-1">
                   {errors.map((error, index) => (
                     <li key={index}>{error}</li>
@@ -143,7 +143,7 @@ export default function UploadPage() {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                className={`relative border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-colors ${
                   isDragging
                     ? 'border-blue-500 bg-blue-900 bg-opacity-20'
                     : 'border-gray-600 hover:border-gray-500'
@@ -158,7 +158,7 @@ export default function UploadPage() {
                 
                 <div className="space-y-2">
                   <svg
-                    className="mx-auto h-12 w-12 text-gray-400"
+                    className="mx-auto h-8 sm:h-12 w-8 sm:w-12 text-gray-400"
                     stroke="currentColor"
                     fill="none"
                     viewBox="0 0 48 48"
@@ -170,7 +170,7 @@ export default function UploadPage() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <div className="text-gray-300">
+                  <div className="text-sm sm:text-base text-gray-300">
                     <span className="font-medium text-blue-400 hover:text-blue-300">
                       Нажмите для выбора
                     </span>
@@ -188,9 +188,9 @@ export default function UploadPage() {
                 <img
                   src={preview}
                   alt="Предпросмотр"
-                  className="max-w-full h-auto rounded-lg shadow-md max-h-96 mx-auto"
+                  className="max-w-full h-auto rounded-lg shadow-md max-h-64 sm:max-h-96 mx-auto"
                 />
-                <p className="text-center text-sm text-gray-400 mt-2">
+                <p className="text-center text-xs sm:text-sm text-gray-400 mt-2 break-all px-2">
                   {file?.name}
                 </p>
               </div>
@@ -206,7 +206,7 @@ export default function UploadPage() {
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-100 bg-gray-700"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base text-gray-100 bg-gray-700"
               />
             </div>
 
@@ -219,7 +219,7 @@ export default function UploadPage() {
                 rows={4}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-100 bg-gray-700"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base text-gray-100 bg-gray-700"
               />
             </div>
 
@@ -236,18 +236,18 @@ export default function UploadPage() {
               </label>
             </div>
 
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
               <button
                 type="submit"
                 disabled={loading || !file}
-                className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-blue-600 text-white px-4 py-2.5 sm:py-2 rounded-md text-sm sm:text-base font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Загрузка...' : 'Загрузить изображение'}
               </button>
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="px-4 py-2 border border-gray-600 rounded-md text-gray-300 hover:bg-gray-700"
+                className="px-4 py-2.5 sm:py-2 border border-gray-600 rounded-md text-sm sm:text-base text-gray-300 hover:bg-gray-700"
               >
                 Отмена
               </button>

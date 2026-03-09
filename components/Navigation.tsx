@@ -7,36 +7,36 @@ export async function Navigation() {
 
   return (
     <nav className="bg-gray-900 shadow-sm border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center space-x-8">
-            <Link href="/" className="text-xl font-bold text-white">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-14 sm:h-16 items-center">
+          <div className="flex items-center space-x-2 sm:space-x-8">
+            <Link href="/" className="text-lg sm:text-xl font-bold text-white">
               ImageShare
             </Link>
             <Link
               href="/"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="hidden sm:block text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Обзор
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-1 sm:space-x-4">
             {session?.user ? (
               <>
                 <Link
                   href="/upload"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+                  className="bg-blue-600 text-white px-2 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:bg-blue-700"
                 >
                   Загрузить
                 </Link>
                 <Link
                   href="/profile"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-300 hover:text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium"
                 >
                   Профиль
                 </Link>
-                <div className="flex items-center space-x-2">
+                <div className="hidden md:flex items-center space-x-2">
                   <span className="text-sm text-gray-300">
                     {session.user.username}
                   </span>
@@ -54,18 +54,32 @@ export async function Navigation() {
                     </button>
                   </form>
                 </div>
+                <form
+                  className="md:hidden"
+                  action={async () => {
+                    'use server';
+                    await signOut({ redirectTo: '/' });
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="text-gray-300 hover:text-white px-2 py-1.5 rounded-md text-xs font-medium"
+                  >
+                    Выйти
+                  </button>
+                </form>
               </>
             ) : (
               <>
                 <Link
                   href="/login"
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-300 hover:text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium"
                 >
                   Войти
                 </Link>
                 <Link
                   href="/signup"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+                  className="bg-blue-600 text-white px-2 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium hover:bg-blue-700"
                 >
                   Регистрация
                 </Link>

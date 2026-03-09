@@ -24,6 +24,7 @@ export function ImageCard({ image }: ImageCardProps) {
           <img
             src={imageUrl}
             alt={image.title}
+            loading="lazy"
             className={`group-hover:scale-105 transition-transform duration-200 ${
               isGif 
                 ? 'max-w-full max-h-full object-contain' 

@@ -46,6 +46,7 @@ export default async function ImagePage({ params }: ImagePageProps) {
               <img
                 src={imageUrl}
                 alt={image.title}
+                loading="lazy"
                 className="w-full h-auto max-h-[400px] sm:max-h-[600px] object-contain bg-gray-700"
               />
             </div>

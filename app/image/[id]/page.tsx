@@ -29,7 +29,14 @@ export default async function ImagePage({ params }: ImagePageProps) {
     const authorId = image.author._ref || image.author._id;
     const isAuthor = session?.user?.id === authorId;
 
-    const imageUrl = urlFor(image.image).width(1200).url();
+    // Check if it's a GIF to avoid transformation issues
+    const assetRef = image.image.asset._ref;
+    const isGif = assetRef.includes('-gif');
+    
+    // For GIFs, use original URL without transformations to preserve animation
+    const imageUrl = isGif 
+      ? urlFor(image.image).url() 
+      : urlFor(image.image).width(1200).url();
 
     return (
       <div className="min-h-screen bg-gray-950 py-4 sm:py-8">
